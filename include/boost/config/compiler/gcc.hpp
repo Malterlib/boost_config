@@ -104,16 +104,28 @@
      // _WIN32 or one of its variant spellings. Note that Cygwin is a POSIX environment,
      // so does not define _WIN32 or its variants, but still supports dllexport/dllimport.
 #    define BOOST_HAS_DECLSPEC
-#    define BOOST_SYMBOL_EXPORT __attribute__((__dllexport__))
-#    define BOOST_SYMBOL_IMPORT __attribute__((__dllimport__))
+#    ifndef BOOST_SYMBOL_EXPORT
+#      define BOOST_SYMBOL_EXPORT __attribute__((__dllexport__))
+#    endif
+#    ifndef BOOST_SYMBOL_IMPORT
+#      define BOOST_SYMBOL_IMPORT __attribute__((__dllimport__))
+#    endif
 #  else
-#    define BOOST_SYMBOL_EXPORT __attribute__((__visibility__("default")))
-#    define BOOST_SYMBOL_IMPORT
+#    ifndef BOOST_SYMBOL_EXPORT
+#      define BOOST_SYMBOL_EXPORT __attribute__((__visibility__("default")))
+#    endif
+#    ifndef BOOST_SYMBOL_IMPORT
+#      define BOOST_SYMBOL_IMPORT
+#    endif
 #  endif
-#  define BOOST_SYMBOL_VISIBLE __attribute__((__visibility__("default")))
+#  ifndef BOOST_SYMBOL_VISIBLE
+#    define BOOST_SYMBOL_VISIBLE __attribute__((__visibility__("default")))
+#  endif
 #else
 // config/platform/win32.hpp will define BOOST_SYMBOL_EXPORT, etc., unless already defined
-#  define BOOST_SYMBOL_EXPORT
+#  ifndef BOOST_SYMBOL_EXPORT
+#    define BOOST_SYMBOL_EXPORT
+#  endif
 #endif
 
 //

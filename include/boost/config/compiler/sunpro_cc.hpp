@@ -81,9 +81,15 @@
 // Dynamic shared object (DSO) and dynamic-link library (DLL) support
 //
 #if __SUNPRO_CC > 0x500
-#  define BOOST_SYMBOL_EXPORT __global
-#  define BOOST_SYMBOL_IMPORT __global
-#  define BOOST_SYMBOL_VISIBLE __global
+#  ifndef BOOST_SYMBOL_EXPORT
+#    define BOOST_SYMBOL_EXPORT __global
+#  endif
+#  ifndef BOOST_SYMBOL_IMPORT
+#    define BOOST_SYMBOL_IMPORT __global
+#  endif
+#  ifndef BOOST_SYMBOL_VISIBLE
+#    define BOOST_SYMBOL_VISIBLE __global
+#  endif
 #endif
 
 // Deprecated symbol markup

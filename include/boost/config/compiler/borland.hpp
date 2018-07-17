@@ -301,7 +301,9 @@
 //
 #if defined(__STRICT_ANSI__)
 // config/platform/win32.hpp will define BOOST_SYMBOL_EXPORT, etc., unless already defined
-#  define BOOST_SYMBOL_EXPORT
+#  ifndef BOOST_SYMBOL_EXPORT
+#    define BOOST_SYMBOL_EXPORT
+#  endif
 #endif
 //
 // ABI fixing headers:

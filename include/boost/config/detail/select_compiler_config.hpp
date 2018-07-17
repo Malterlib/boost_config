@@ -19,6 +19,12 @@
 
 #endif
 
+#ifdef BOOST_NODEFAULTVISIBILITY
+#    define BOOST_SYMBOL_EXPORT
+#    define BOOST_SYMBOL_IMPORT
+#    define BOOST_SYMBOL_VISIBLE
+#endif
+
 #if defined(__GCCXML__)
 // GCC-XML emulates other compilers, it has to appear first here!
 #   define BOOST_COMPILER_CONFIG "boost/config/compiler/gcc_xml.hpp"

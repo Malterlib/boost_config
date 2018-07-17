@@ -313,9 +313,15 @@ template<> struct assert_intrinsic_wchar_t<unsigned short> {};
 // Dynamic shared object (DSO) and dynamic-link library (DLL) support
 //
 #if defined(__GNUC__) && (__GNUC__ >= 4)
-#  define BOOST_SYMBOL_EXPORT __attribute__((visibility("default")))
-#  define BOOST_SYMBOL_IMPORT
-#  define BOOST_SYMBOL_VISIBLE __attribute__((visibility("default")))
+#  ifndef BOOST_SYMBOL_EXPORT
+#    define BOOST_SYMBOL_EXPORT __attribute__((visibility("default")))
+#  endif
+#  ifndef BOOST_SYMBOL_IMPORT
+#    define BOOST_SYMBOL_IMPORT
+#  endif
+#  ifndef BOOST_SYMBOL_VISIBLE
+#    define BOOST_SYMBOL_VISIBLE __attribute__((visibility("default")))
+#  endif
 #endif
 
 // Type aliasing hint

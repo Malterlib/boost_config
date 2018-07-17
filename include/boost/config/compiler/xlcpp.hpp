@@ -60,9 +60,15 @@
 // Dynamic shared object (DSO) and dynamic-link library (DLL) support
 //
 #if !defined(_WIN32) && !defined(__WIN32__) && !defined(WIN32)
-#  define BOOST_SYMBOL_EXPORT __attribute__((__visibility__("default")))
-#  define BOOST_SYMBOL_IMPORT
-#  define BOOST_SYMBOL_VISIBLE __attribute__((__visibility__("default")))
+#  ifndef BOOST_SYMBOL_EXPORT
+#    define BOOST_SYMBOL_EXPORT __attribute__((__visibility__("default")))
+#  endif
+#  ifndef BOOST_SYMBOL_IMPORT
+#    define BOOST_SYMBOL_IMPORT
+#  endif
+#  ifndef BOOST_SYMBOL_VISIBLE
+#    define BOOST_SYMBOL_VISIBLE __attribute__((__visibility__("default")))
+#  endif
 #endif
 
 //

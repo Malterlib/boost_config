@@ -108,12 +108,22 @@
 //
 #if defined(_WIN32) || defined(__WIN32__) || defined(WIN32) || defined(__CYGWIN__)
 #  define BOOST_HAS_DECLSPEC
-#  define BOOST_SYMBOL_EXPORT __attribute__((__dllexport__))
-#  define BOOST_SYMBOL_IMPORT __attribute__((__dllimport__))
+#  ifndef BOOST_SYMBOL_EXPORT
+#    define BOOST_SYMBOL_EXPORT __attribute__((__dllexport__))
+#  endif
+#  ifndef BOOST_SYMBOL_IMPORT
+#    define BOOST_SYMBOL_IMPORT __attribute__((__dllimport__))
+#  endif
 #else
-#  define BOOST_SYMBOL_EXPORT __attribute__((__visibility__("default")))
-#  define BOOST_SYMBOL_VISIBLE __attribute__((__visibility__("default")))
-#  define BOOST_SYMBOL_IMPORT
+#  ifndef BOOST_SYMBOL_EXPORT
+#    define BOOST_SYMBOL_EXPORT __attribute__((__visibility__("default")))
+#  endif
+#  ifndef BOOST_SYMBOL_VISIBLE
+#    define BOOST_SYMBOL_VISIBLE __attribute__((__visibility__("default")))
+#  endif
+#  ifndef BOOST_SYMBOL_IMPORT
+#    define BOOST_SYMBOL_IMPORT
+#  endif
 #endif
 
 //
